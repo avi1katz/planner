@@ -1,0 +1,67 @@
+.App {
+  text-align: center;
+  background: linear-gradient(rgba(255,255,255 ,1), rgba(50,50,50,.9))
+  ,url('https://images.pexels.com/photos/280264/pexels-photo-280264.jpeg') 0% 0%/cover no-repeat
+  /*,url('https://images.pexels.com/photos/364671/pexels-photo-364671.jpeg') 0% 0%/cover no-repeat*/
+  ;
+  padding: 0;
+  margin: 0;
+}
+
+.fill-viewport {
+  min-height: 100vh
+}
+
+.App-header {
+  background-color: #222;
+  height: 80px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+th {
+  text-align: inherit;
+}
+
+@media screen and (min-width: 768px ){
+  .basis-md-75 {
+    flex-basis: 100%
+  }
+}
+
+.invalid-feedback {
+  text-shadow: -1px 0 white, 0 -1px white, 1px 0 white, 0 1px white;
+  letter-spacing: .7px;
+}
+
+.w-10 {
+  width: 10%;
+}
+.w-15 {
+  width: 15%;
+}
+
+.btn-danger {
+  background-color: #dc354561;
+}
+
+/*.btn-dark:disabled {
+  background-color: #343a4091;
+}*/
+
+.text-white-70 {
+  color: rgba(255, 255, 255, 0.7)
+}
+
+tr.completed {
+  color: #21252982;
+  text-decoration: line-through;
+}
