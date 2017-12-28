@@ -1,12 +1,14 @@
 A planner app
+
 TODO:
 
 Functionality:
-  Put on Github
+  --Put on Github
+  Date Picker
+  Edit task
   Add 'Notes' column
-  UUID for keys
-  MongoDB integration
-  Go to different dates
+  --MongoDB integration
+  --Go to different dates
   --Completed Status
 
 Bugs:

@@ -15,7 +15,11 @@ class AddTask extends Component {
   }
   onButtonClick(event){
     console.log(`start: ${this.state.startTime} activity: ${this.state.activity}`);
-    this.props.onAddButtonClicked(this.state.startTime, this.state.activity);
+    this.props.onAddButtonClicked({user: 'avi',
+                                  date: this.props.pageDate,
+                                  startTime: this.state.startTime,
+                                  activity: this.state.activity,
+                                  completed: false});
     this.setState({startTime:'', activity: '', touched: {startTime: false, activity: false }});
   }
 
