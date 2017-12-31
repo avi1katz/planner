@@ -4,7 +4,10 @@ TODO:
 
 Functionality:
   --Put on Github
-  Date Picker
+  Full screen - make tasks scrollable
+  Daily Template
+  Date Picker - Choose from Date Header
+  Go to Today - nonbreaking
   Edit task
   Add 'Notes' column
   --MongoDB integration

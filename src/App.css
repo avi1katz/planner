@@ -9,7 +9,11 @@
 }
 
 .fill-viewport {
-  min-height: 100vh
+  min-height: 100vh;
+}
+
+.TodoArea {
+  flex-grow: 1;
 }
 
 th {

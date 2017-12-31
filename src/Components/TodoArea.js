@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Schedule from './Schedule';
-import AddTask from './AddTask';
 import ArrowDivButton from './ArrowDivButton';
 
 class TodoArea extends Component {
@@ -18,10 +17,12 @@ class TodoArea extends Component {
     this.onDelButtonClicked = this.onDelButtonClicked.bind(this);
     this.onRowClicked = this.onRowClicked.bind(this);
     this.onArrowClicked = this.onArrowClicked.bind(this);
+    this.onTodayClicked = this.onTodayClicked.bind(this);
   }
-  
+
   onAddButtonClicked(task) {
-    this.setState({tasks: [...this.state.tasks, {_id: Date.now(), startTime: task.startTime, activity: task.activity, completed: false}]});
+    this.setState({tasks: [...this.state.tasks,
+      {_id: Date.now(), startTime: task.startTime, activity: task.activity, completed: false}]});
     axios.post(`${this.props.url}/tasks`, task)
     .then(res => {
       //this.setState({tasks: [...this.state.tasks, task]});
@@ -86,6 +87,10 @@ class TodoArea extends Component {
     //this.loadTasksFromServer();
   }
 
+  onTodayClicked(event) {
+    this.setState({pageDate : new Date(new Date().setHours(0,0,0,0))},
+                        () => this.loadTasksFromServer());
+  }
   verifyDates(date1, date2) {
     // call setHours to take the time out of the comparison
     return date1.setHours(0,0,0,0) === date2.setHours(0,0,0,0);
@@ -116,24 +121,23 @@ class TodoArea extends Component {
   render() {
     const {tasks, pageDate} = this.state;
     return (
-      <div className="TodoArea">
-        <div className="row align-items-stretch justify-content-center">
-          <ArrowDivButton direction={"left"} onArrowClicked={this.onArrowClicked}/>
-          <ArrowDivButton direction={"right"} onArrowClicked={this.onArrowClicked}/>
-          <div className="col-12 col-md-8 order-md-2">
-            <div
-            className={"row div-button-dark justify-content-center align-items-center"
-                      + (this.verifyDates(new Date(pageDate), new Date()) ? " d-none" : "")}
-            onClick={(event) => {this.setState({pageDate : new Date(new Date().setHours(0,0,0,0))},
-                                () => this.loadTasksFromServer())}}>
-              <h3 className="my-2"> Go to today! </h3>
-            </div>
-            <Schedule tasks={tasks}
-              pageDate={pageDate}
-              onDelButtonClicked={this.onDelButtonClicked}
-              onRowClicked={this.onRowClicked}/>
-            <AddTask onAddButtonClicked={this.onAddButtonClicked} pageDate={pageDate}/>
+      <div className=" TodoArea row align-items-stretch justify-content-center">
+        <ArrowDivButton direction={"left"} onArrowClicked={this.onArrowClicked}/>
+        <ArrowDivButton direction={"right"} onArrowClicked={this.onArrowClicked}/>
+        <div className="col-12 col-md-8 order-md-2 d-flex flex-column">
+          <div
+          className={"row div-button-dark justify-content-center align-items-center d-none"
+                    + (this.verifyDates(new Date(pageDate), new Date()) ? " d-none" : "")}
+          onClick={(event) => {this.setState({pageDate : new Date(new Date().setHours(0,0,0,0))},
+                              () => this.loadTasksFromServer())}}>
+            <h3 className="col my-2"> Go to today! </h3>
           </div>
+          <Schedule tasks={tasks}
+            pageDate={pageDate}
+            onAddButtonClicked={this.onAddButtonClicked}
+            onDelButtonClicked={this.onDelButtonClicked}
+            onRowClicked={this.onRowClicked}
+            onTodayClicked={this.onTodayClicked}/>
         </div>
       </div>
     );
